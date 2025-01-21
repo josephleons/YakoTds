@@ -1,0 +1,10 @@
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .sidebar.open + .content {
+    margin-left: 250px; /* Adjust content area when sidebar is open */
+  }
+  

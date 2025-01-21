@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 d-flex justify-content-start mb-3">
+      <app-create-account (EmmitUserData)="createUserAccount($event)"></app-create-account>
+    </div>
+    <div class="col-6 d-flex justify-content-start mb-3">
+      <div class="btn btn-info text-white">Fetch Records</div>
+    </div>
+  </div>
+  <div>
+    <app-user-list ></app-user-list>
+  </div>
+</div>
