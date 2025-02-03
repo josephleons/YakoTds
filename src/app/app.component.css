@@ -7,4 +7,21 @@
   .sidebar.open + .content {
     margin-left: 250px; /* Adjust content area when sidebar is open */
   }
+  .card {
+    border-radius: 15px;
+  }
   
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+ 
