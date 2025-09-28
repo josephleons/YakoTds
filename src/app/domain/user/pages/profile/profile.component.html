@@ -1,0 +1,6 @@
+<div *ngIf="user$ | async as user">
+    <p>Fullname:{{ user.name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Role: {{ (role$ | async) || '-'}}</p>
+    <p>State: {{ (states$ | async) || '-'}}</p>
+</div>

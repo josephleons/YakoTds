@@ -1,0 +1,13 @@
+<div class="card">
+    <!-- header  slot-->
+    <div class="card-block">
+    <ng-content class="card-header" select="[card-header]"></ng-content>
+    </div>
+    <div class="card-block">
+    <ng-content select="[card-block]"></ng-content>
+    </div>
+    <!-- footer slot  -->
+     <div class="card-footer">
+        <ng-content  select="[card-footer]"></ng-content>
+     </div>
+</div>

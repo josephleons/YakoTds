@@ -1,0 +1,70 @@
+<clr-main-container>
+    <clr-header class="header header-6 ">
+        <div class="branding me-auto">
+            <a class="nav-link">
+                <clr-icon shape="vm-bug"></clr-icon>
+                <span class="title">LIM CLEANER</span>
+            </a>
+        </div>
+        <div class="header-nav" [clr-nav-level]="1">
+            <a class="nav-link active" routerLink="/auth">Login</a>
+            <a class="nav-link" routerLink="/registration">Register</a>
+        </div>
+    </clr-header>
+    <div class="content-container">
+        <main class="content-area">
+            <div class="container d-flex justify-content-center align-items-center vh-100">
+                <div class="p-4 rounded shadow"
+                    style="width: 100%; max-width: 450px; background: rgba(255, 255, 255, 0.95);">
+                    <app-loader *ngIf="isLoading"> </app-loader>
+                    <form #auth="ngForm" (ngSubmit)="loginUser()" *ngIf="!isLoading">
+                        <div class="login-body ">
+                            <h2 class="d-flex justify-content-center pt-5"></h2>
+                            <section class="title d-flex justify-content-center p-5">
+                                <div class="welcome text-muted"
+                                    style="font-size: 20px;color:black; font-weight:bold; opacity:initial">LIM CLEANER
+                                </div>
+                            </section>
+                            <div class="d-flex justify-content-center ">
+                                <div class="login-group">
+                                    <clr-input-container>
+                                        <label class="clr-sr-only">E-mail</label>
+                                        <input type="text" autocomplete="username" class="text-dark" name="email"
+                                            clrInput placeholder="Enter e-mail" [(ngModel)]="payload.email" />
+                                    </clr-input-container>
+                                    <clr-password-container>
+                                        <label class="clr-sr-only">Password</label>
+                                        <input type="password" autocomplete="current-password" class="text-dark"
+                                            name="password" clrPassword placeholder="Enter password"
+                                            [(ngModel)]="payload.password" />
+                                    </clr-password-container>
+                                    <clr-checkbox-wrapper>
+                                        <label>Remember me</label>
+                                        <input type="checkbox" #remeberme name="rememberMe" clrCheckbox
+                                            [(ngModel)]="remeberme" />
+                                    </clr-checkbox-wrapper>
+                                    <div class="error active">Invalid user name or password</div>
+                                    <div class="">
+                                        <button type="submit" class="btn btn-primary btn-dark w-100 text-white "
+                                            [disabled]="auth.invalid">Log
+                                            in</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center p-2">
+                                <button routerLink="/registration" class="nav-link text-info mx-2" type="button">
+                                    Sign up for an account
+                                </button>
+                            </div>
+                            <div class="login-footer d-flex justify-content-center pt-2 text-dark">
+                                <a href="javascript://">Terms</a>
+                                <a href="javascript://">Privacy</a>
+                                <a href="javascript://">California Privacy Rights</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</clr-main-container>

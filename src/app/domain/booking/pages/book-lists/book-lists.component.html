@@ -1,0 +1,47 @@
+<p>All Booking History</p>
+<div class="clr-row">
+    <div class="clr-col-xl-12 clr-col-lg-12 clr-col-md-8 clr-col-sm-12 clr-col-xs-12 Bookinglist">
+        <div class="table-responsive">
+            <clr-datagrid class="clr-datagrid table-noborder">
+                <clr-dg-column>S/N</clr-dg-column>
+                <clr-dg-column>Service</clr-dg-column>
+                <clr-dg-column>customer</clr-dg-column>
+                <clr-dg-column>provider</clr-dg-column>
+                <clr-dg-column>status</clr-dg-column>
+                <clr-dg-column>Action</clr-dg-column>
+                <clr-dg-row *ngIf="loading$ | async">
+                    <clr-dg-cell colspan="7" class="text-center py-3">
+                        <app-loader></app-loader>
+                    </clr-dg-cell>
+                </clr-dg-row>
+                <clr-dg-row *clrDgItems="let book of book$ | async; let i = index">
+                    <clr-dg-cell>{{ i + 1 }}</clr-dg-cell>
+                    <clr-dg-cell>{{ book.service.name}}</clr-dg-cell>
+                    <clr-dg-cell class="text-secondary">{{ book.customer.customer_name| uppercase}}</clr-dg-cell>
+
+                    <clr-dg-cell>
+                        <clr-dg-cell>{{ book.providerService?.company_name || 'No provider' }}</clr-dg-cell>
+                    </clr-dg-cell>
+
+                    <clr-dg-cell>
+                        <span class="badge" [ngClass]="getBadgeClass(book.booking_status.name)">
+                            {{ book.booking_status.name }}
+                        </span>
+                    </clr-dg-cell>
+                    <clr-dg-cell>
+                        <button class="btn btn-outline-info btn-sm me-2" (click)="loadBookData(book.id)">View</button>
+                    </clr-dg-cell>
+                </clr-dg-row>
+                <clr-dg-footer>
+                    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+                        <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]">
+                            Items per page
+                        </clr-dg-page-size>
+                        {{ pagination.firstItem + 1 }} – {{ pagination.lastItem + 1 }} of
+                        {{ pagination.totalItems }} items
+                    </clr-dg-pagination>
+                </clr-dg-footer>
+            </clr-datagrid>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <section class="pt-2 mb-5">
+        <div class="row text-center">
+            <div class="col-xl-4 col-lg-4 col-md-10 col-sm-12">
+                <div class="card shadow-sm border-0 hover-shadow">
+                    <div class="card-title" [class]="getClassColor(all)">{{all}}</div>
+                    <p class="card-text fs-6" *ngIf="totalBooking$ | async as total">{{total}}</p>
+                    <span class="d-flex justify-content-between p-2">
+                        <p [class]="getClassColor(complete)">{{complete}}()</p>
+                        <p [class]="getClassColor(pending)"> {{pending}}()</p>
+                    </span>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-10 col-sm-12">
+                <div class="card shadow-sm border-0 hover-shadow p-2">
+                    <div class="card-title" [class]="getClassColor(service)">{{service}}</div>
+                    <p class="card-text fs-6" *ngIf="totalservices$ | async as service">{{service}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

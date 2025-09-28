@@ -1,0 +1,17 @@
+<!-- <div class="sb sb-error">{{errorMessage}}</div> -->
+<!-- <div *ngIf="snackbar$ | async as msg" class="sb show sb-error" >
+    {{ msg }}
+</div> -->
+
+<!-- <div *ngIf="snackbar$ | async as msg"
+    [class]="'sb show ' + ((type$ | async) === 'success' ? 'sb-success' : 'sb-error')">
+    {{ msg }}
+</div> -->
+
+<div *ngIf="snackbar$ | async as msg" [class]="'sb show ' +
+       ((type$ | async) === 'success' ? 'sb-success' :
+        (type$ | async) === 'info' ? 'sb-info' :
+        (type$ | async) === 'warning' ? 'sb-warning' : 'sb-error')">
+
+    {{ msg }}
+</div>

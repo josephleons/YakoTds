@@ -1,7 +1,106 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    background-color: #F8F9FB;
+
+@import '@cds/core/global.min.css';
+@import '@cds/core/styles/theme.dark.min.css';
+@import '@clr/ui/clr-ui.min.css';
+
+/* 
+i {
+    font-size: 20px !important;
+    font-weight: bold !important;
 }
-.button-color{
-    background-color: #0089ba;
+
+a {
+    font-size: 20px !important;
+}
+
+mat-menu .card-bg {
+    background-color: #f8fbff !important;
+}
+
+body {
+    background-color: #f8fbff !important;
+}
+
+i {
+    color: #1D3F72
+}
+
+h1 {
+    color: #1D3F72 !important;
+}
+
+h5 {
+    font-weight: bold !important;
+    color: #1D3F72 !important
+}
+
+h6 {
+    font-weight: bold !important;
+    color: #1D3F72 !important
+}
+
+.button-color {
+    color: #f8fbff !important;
+    background-color: #2C5F94 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.compact-list .mat-list-item {
+    height: auto !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: 0 !important;
+    min-height: unset !important;
+}
+
+.site-footer {
+    background-color: #e5f0ff;
+    color: #ffffff;
+    padding: 20px;
+    margin-top: 20%;
+    font-size: 13px;
+    text-align: center;
+    opacity: 5;
+}
+
+.site-footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-links,
+.footer-policies,
+.footer-copy {
+    margin-bottom: 10px;
+}
+
+.footer-copy p {
+    margin: 4px 0;
+    font-size: 12px;
+}
+
+/* Helps find the culprit */
+/* * {
+    outline: 1px solid red;
+    
+} */
+
+.title {
+    font-size: 12px !important;
 }

@@ -1,0 +1,26 @@
+<app-card [borderRadius]="4">
+    <div card-header>
+        <i class="bi bi-7-square-fill"></i> BOOK SUMMARY
+    </div>
+    <div card-block>
+        <ng-container *ngIf="loading$ | async; else showBook">
+            <app-loader></app-loader>
+        </ng-container>
+        <ng-template #showBook>
+            <ng-container *ngIf="currentbook$ | async as book">
+                <p class="text-muted text-capitalize fs-6">Booking Reference: BKRF{{ book.id }}</p>
+                <p><strong>Service:</strong> {{ book.service.name|uppercase }}</p>
+                <p><strong>Provider:</strong> {{ book.providerService?.company_name|uppercase }}</p>
+                <p><strong>Customer:</strong> {{ book.customer.customer_name| uppercase }}</p>
+                <p><strong>Address:</strong> {{ book.customer.address.location }}</p>
+                <p><strong>Mobile:</strong> {{ book.customer.address.mobile }}</p>
+            </ng-container>
+        </ng-template>
+    </div>
+    <div card-footer class="text-end">
+        <ng-container *ngIf="currentbook$ | async as book">
+            <button class="btn btn-md" [ngClass]="getButtonClass(book.booking_status.name)">{{book.booking_status.name
+                }}</button>
+        </ng-container>
+    </div>
+</app-card>

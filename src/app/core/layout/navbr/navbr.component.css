@@ -1,0 +1,5 @@
+.spaced-header {
+    padding-block: var(--cds-global-layout-space-md);
+    /* Optional: horizontal padding too */
+    padding-inline: var(--cds-global-layout-space-sm);
+}

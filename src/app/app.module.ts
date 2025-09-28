@@ -1,49 +1,103 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { FormsModule} from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
-import { FromComponent } from './from/from.component';
-import { CreateAccountComponent } from './user/create-account/create-account.component';
-import { UserListComponent } from './user/user-list/user-list.component';
-import { ProfileComponent } from './user/profile/profile.component';
-import { FindComponent } from './home/find/find.component';
-import { NavComponent } from './inc/nav/nav.component';
-import { TrypostComponent } from './trypost/trypost.component';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import { HomeComponent } from './domain/home/pages/home.component';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DashboardComponent } from './domain/dashboard/pages/dashboard.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { LoginComponent } from './core/auth/pages/login/login.component';
+import { UserState } from './core/auth/state/user.state';
+import { NgxsModule } from '@ngxs/store';
+import { ProfileComponent } from './domain/user/pages/profile/profile.component';
+import { SettingComponent } from './domain/user/pages/setting/setting.component';
+import { UserRoutingModule } from './domain/user/user-routing.module';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { NavbrComponent } from './core/layout/navbr/navbr.component';
+import { ClarityModule } from "@clr/angular";
+import { ClarityIcons, userIcon, homeIcon, noteIcon, warningStandardIcon } from '@cds/core/icon';
+import { AppRoutingModule } from './app-routing.module';
+import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
+import { BookDetailsComponent } from './domain/booking/pages/book-details/book-details.component';
+import { BookListsComponent } from './domain/booking/pages/book-lists/book-lists.component';
+import { BookStateService } from './domain/booking/state/book-state';
+import { ServiceStates } from './domain/service/state/service-states';
+import { CardComponent } from './shared/card/card.component';
+import { FormsModule } from '@angular/forms';
+import { RegistrationComponent } from './domain/registration/pages/registration/registration.component';
+import { AuthInterceptor } from './shared/inteceptor/auth-service-interceptor';
+import { SnackbarComponent } from './shared/utilitie/snackbar/snackbar.component';
+import { BookingServiceState } from './domain/home/state/booking-service-state';
+import { CommonModule } from '@angular/common';
+import { ServiceListsComponent } from './domain/service/pages/service-lists/service-lists.component';
+import { ServiceDetailsComponent } from './domain/service/pages/service-details/service-details.component';
+import { SnackStateService } from './shared/utilitie/snack-state';
+ClarityIcons.addIcons(userIcon, homeIcon, noteIcon, warningStandardIcon);
 
-// Define the routes
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'try-post', component: TrypostComponent },
-  { path: 'user', component: UserComponent }, // Default route
- // Default route
-];
+
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UserComponent,
-    FromComponent,
-    CreateAccountComponent,
-    UserListComponent,
+    LoaderComponent,
+    DashboardComponent,
+    LoginComponent,
     ProfileComponent,
-    FindComponent,
-    NavComponent,
-    TrypostComponent, // Declare your components here
+    SettingComponent,
+    NavbrComponent,
+    MainLayoutComponent,
+    BookDetailsComponent,
+    BookListsComponent,
+    CardComponent,
+    RegistrationComponent,
+    SnackbarComponent,
+    ServiceListsComponent,
+    ServiceDetailsComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes), // Import RouterModule with the routes
+    BrowserAnimationsModule,
+    FontAwesomeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatDividerModule,
+    MatListModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    UserRoutingModule,
+    AppRoutingModule,
+    ClarityModule,
+    CommonModule,
+    NgxsModule.forRoot([UserState, BookStateService, BookingServiceState, ServiceStates, SnackStateService]),
+    NgxsStoragePluginModule.forRoot({
+      keys: '*'
+    })
+    // ChartModule
   ],
   providers: [
-    provideHttpClient(withFetch()),
-    provideClientHydration(withEventReplay())
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideClientHydration(withEventReplay()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

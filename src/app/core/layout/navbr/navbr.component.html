@@ -1,0 +1,49 @@
+<clr-main-container>
+    <clr-header>
+        <div class="branding ">
+            <a href="javascript://">
+                <cds-icon shape="vm-bug"></cds-icon>
+                <span class="title">Householding Management System</span>
+            </a>
+        </div>
+        <div class="header-nav" [clr-nav-level]="1">
+            <a href="javascript://" class="nav-link nav-text">Home</a>
+            <a href="javascript://" class="nav-link nav-text">About</a>
+            <a href="javascript://" class="nav-link nav-text">Support</a>
+        </div>
+    </clr-header>
+    <nav class="subnav" [clr-nav-level]="1">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/app/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript://">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Setting</a>
+            </li>
+        </ul>
+        <div class="header-actions spaced-header" *ngIf="user$ | async as user">
+            <clr-dropdown>
+                <button clrDropdownTrigger class="btn btn-link nav-link text-dark">
+                    {{ user.email }}
+                    <clr-icon shape="angle down"></clr-icon>
+                </button>
+                <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                    <a clrDropdownItem routerLink="/app/profile">Profile</a>
+                    <a clrDropdownItem (click)="onLogout()">Logout</a>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+    </nav>
+    <div class="content-container">
+        <main class="content-area">
+            <router-outlet></router-outlet>
+        </main>
+        <clr-vertical-nav [clr-nav-level]="2">
+            <a clrVerticalNavLink routerLink="/app/services" routerLinkActive="active">Services</a>
+            <a clrVerticalNavLink routerLink="/app/booking" routerLinkActive="active">Booking</a>
+        </clr-vertical-nav>
+    </div>
+</clr-main-container>
